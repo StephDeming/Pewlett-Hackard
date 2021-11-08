@@ -1,0 +1,44 @@
+-- first select customer id, inventory_id and rental_date from the rental date anf order by 
+select customer_id, inventory_id, rental_date
+from rental
+order by customer_id, rental_id desc;
+
+select distinct customer_id, inventory_id, rental_date
+from rental
+order by rental_date
+
+select distinct customer_id, inventory_id, rental_date
+from rental
+where customer_id = 130
+order by rental_date
+
+select distinct on (customer_id) inventory_id, rental_date
+from rental
+order by customer_id, rental_date DESC;
+
+--In this activity, you will practice using DISTINCT ON () with joins and filtering with the WHERE clause.
+
+--Instructions
+
+
+--Retreive the latest rental for each customer's first and last name and emial address.
+select distinct on (r.rental_date) c.first_name, c.last_name, c.email, r.rental_date
+from customer as c
+--into test
+join rental as r 
+on c.customer_id=r.customer_id
+order by rental_date desc
+
+
+
+--Retrieve the latest rental date for each title.
+select distinct on (f.title) f.title, r.rental_date
+from rental as r
+
+join inventory as i 
+o
+on f.title=r.title
+order by rental_date desc
+
+
+--Hint: Join the rental and inventory tables on inventory_id and then join the film table with the inventory table on film_id.

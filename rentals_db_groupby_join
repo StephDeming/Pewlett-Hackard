@@ -1,0 +1,65 @@
+select avg(rental_rate) as "Average Rental Rate"
+from film;
+
+select rating, avg(rental_rate)
+from film
+group by rating;
+
+select rating, min(rental_rate)
+from film
+group by rating;
+
+select rating, max(rental_rate)
+from film
+group by rating;
+
+select sum (replacement_cost)
+from film
+
+select rating, sum(replacement_cost)
+from film 
+group by rating
+
+select min(length)
+from film
+
+select max(length)
+from film
+
+--select avg length of film and order by avg length
+select film_id, avg (length) as "avg length"
+from film
+group by film_id
+order by "avg length";
+--limit results to 5 with 2 decimal places
+select film_id, round (avg(length), 2) as "avg length"
+from film
+group by film_id
+order by "avg length" desc
+limit 5;
+
+-- Select count of actors first names in descending order
+select count(first_name), first_name
+from actor
+Group by first_name
+order by "first_name" desc
+-- Select the average duration of movies by rating. round to two decimal places
+select rating, round(avg(rental_duration),2)
+from film
+group by rating
+order by avg(rental_duration);
+-- Select top ten replace costs for the length of the movie
+select length, avg(replacement_cost)
+from film
+group by length
+order by avg(replacement_cost) desc
+limit 10;
+-- Using the city and country tables, determine the number of cities in each country from the database in descending order.
+select country, count(city)
+from city 
+join country
+	on city.country_id=country.country_id
+group by country.country
+order by count(city)desc
+	
+	
